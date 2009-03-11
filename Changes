@@ -3,3 +3,6 @@ Revision history for Catalyst-Plugin-Static-Simple-ByClass
 0.001   9 March 2009
         First version, released on an unsuspecting world.
 
+0.002   10 March 2009
+        * add missing deps
+
