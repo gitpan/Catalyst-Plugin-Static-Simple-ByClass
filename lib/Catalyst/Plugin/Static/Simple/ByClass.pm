@@ -3,16 +3,17 @@ package Catalyst::Plugin::Static::Simple::ByClass;
 use warnings;
 use strict;
 use Carp;
-use base qw( Catalyst::Plugin::Static::Simple );
-use MRO::Compat;
+use Moose::Role;
+use namespace::autoclean;
 use Class::Inspector;
 use Path::Class;
+with 'Catalyst::Plugin::Static::Simple';
 
-our $VERSION = '0.002';
+our $VERSION = '0.003';
 
 =head1 NAME
 
-Catalyst::Plugin::Static::Simple::ByClass - The fantastic new Catalyst::Plugin::Static::Simple::ByClass!
+Catalyst::Plugin::Static::Simple::ByClass - locate static content in @INC
 
 =head1 SYNOPSIS
 
@@ -46,9 +47,9 @@ for a list of class names to require and add to the include_path.
 
 =cut
 
-sub setup {
+before setup_finalize => sub {
     my $c = shift;
-    $c->next::method;
+
     my $config = $c->config->{static};
     for my $class ( @{ $config->{classes} || [] } ) {
 
@@ -63,7 +64,7 @@ sub setup {
 
     }
     return $c;
-}
+};
 
 1;
 
