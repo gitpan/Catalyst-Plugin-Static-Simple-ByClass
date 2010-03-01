@@ -9,3 +9,6 @@ Revision history for Catalyst-Plugin-Static-Simple-ByClass
 0.003   23 Feb 2010
         * re-write as Moose::Role to work with latest Static::Simple
 
+0.004   28 Feb 2010
+        * trim stuff out of MyApp test files to remove false dependencies.
+
